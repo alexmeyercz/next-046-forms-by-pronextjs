@@ -1,16 +1,20 @@
 'use client'
 
-import React, { useEffect, type FC } from 'react'
+// react/next
+import React, { type FC, useState } from 'react'
+// shadcn
 import { useForm } from 'react-hook-form'
-import { registerSchema, registerSchemaType } from '@/schema/schema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from './ui/button'
-import { Form } from '@/components/ui/form'
-import { InputField } from './Fields'
 import { z } from 'zod'
-import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form } from '@/components/ui/form'
+import { Button } from './ui/button'
+// components
+import { InputField } from './Fields'
+// lib
+import { registerSchema, type RegisterSchemaType } from '@/schema/schema'
 
 const f = '⇒ RegistrationForm.tsx (RegistrationForm):'
+const url = '/api/register'
 
 const RegistrationForm: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -23,9 +27,9 @@ const RegistrationForm: FC = () => {
     undefined
   )
 
-  const form = useForm<registerSchemaType>({
+  const form = useForm<RegisterSchemaType>({
     // comment resolver: zodResolver... to imitate server validation
-    // resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       first: '',
       last: '',
@@ -33,8 +37,7 @@ const RegistrationForm: FC = () => {
     },
   })
   // console.log(f, 'form.control →', form.control)
-  const processForm = async (data: registerSchemaType) => {
-    const url = '/api/register'
+  const processForm = async (data: RegisterSchemaType) => {
     setIsLoading(true)
     try {
       const response = await fetch(url, {
@@ -61,6 +64,7 @@ const RegistrationForm: FC = () => {
         setErrorMessage('')
         setServerErrors(undefined)
         setIsSent(true)
+        form.reset()
       } else {
         setIsError(true)
         setErrorMessage(responseData.message)

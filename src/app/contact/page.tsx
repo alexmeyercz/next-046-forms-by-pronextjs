@@ -1,3 +1,4 @@
+import ContactForm from '@/components/ContactForm'
 import React, { type FC } from 'react'
 
 const f = '⇒ page.tsx (ContactPage):'
@@ -5,7 +6,10 @@ const f = '⇒ page.tsx (ContactPage):'
 const ContactPage: FC = () => {
   return (
     <div>
-      <h1>ContactPage</h1>
+      <ContactForm />
+      <div className='mt-8'>
+        <p>FormData POST via API Route</p>
+      </div>
     </div>
   )
 }

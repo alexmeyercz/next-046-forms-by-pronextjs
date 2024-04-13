@@ -10,4 +10,17 @@ export const registerSchema = z.object({
     .email({ message: 'Invalid email' })
     .min(1, { message: 'Email is required' }),
 })
-export type registerSchemaType = z.infer<typeof registerSchema>
+export type RegisterSchemaType = z.infer<typeof registerSchema>
+
+// contact
+export const contactSchema = z.object({
+  first: z.string().trim().min(1, { message: 'First name is required' }),
+  message: z
+    .string()
+    .trim()
+    .min(10, { message: 'Message must be at least 10 characters.' })
+    .max(160, {
+      message: 'Message must not be longer than 160 characters.',
+    }),
+})
+export type ContactSchemaType = z.infer<typeof contactSchema>

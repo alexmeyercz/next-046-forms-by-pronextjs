@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   console.log(f, 'parsed →', parsed)
 
   // Add artificial delay
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  // await new Promise((resolve) => setTimeout(resolve, 2000))
 
   if (parsed.success) {
     // Add parsed.data to database
@@ -19,9 +19,15 @@ export async function POST(req: NextRequest) {
       user: parsed.data,
     })
   } else {
-    return NextResponse.json({
-      message: 'User registration failed',
-      error: parsed.error,
-    })
+    return NextResponse.json(
+      {
+        message: 'User registration failed',
+        error: parsed.error,
+      }
+      // TODO: investigate, if I send 400, I don't get parsed.error...
+      // ...that is used for showing actual issues...
+      // ...it doesn't seem to be the problem when fetch/then/then is used instead of try/catch
+      // { status: 400 }
+    )
   }
 }

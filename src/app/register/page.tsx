@@ -7,6 +7,9 @@ const RegisterPage: FC = () => {
   return (
     <div>
       <RegistrationForm />
+      <div className='mt-8'>
+        <p>JSON POST Request via API route</p>
+      </div>
     </div>
   )
 }
