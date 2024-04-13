@@ -27,9 +27,9 @@ export const InputField = ({
   return (
     <FormField
       control={control}
-      name='first'
+      name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className='flex-grow'>
           <FormLabel>{label || name}</FormLabel>
           <FormControl>
             <Input
@@ -38,6 +38,7 @@ export const InputField = ({
             />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
         </FormItem>
       )}
     ></FormField>
