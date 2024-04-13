@@ -1,14 +1,13 @@
 import RegistrationForm from '@/components/RegistrationForm'
-
 import React, { type FC } from 'react'
 
-const f = '⇒ page.tsx (HomePage):'
+const f = '⇒ page.tsx (RegisterPage):'
 
-const HomePage: FC = () => {
+const RegisterPage: FC = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <RegistrationForm />
     </div>
   )
 }
-export default HomePage
+export default RegisterPage
