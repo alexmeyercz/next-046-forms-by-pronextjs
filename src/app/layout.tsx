@@ -16,10 +16,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      suppressHydrationWarning
+    >
       <body className={inter.className}>
+        <Navbar />
         <div className='container'>
-          <Navbar />
           <div className='max-w-xl mx-auto pt-8'>{children}</div>
         </div>
       </body>

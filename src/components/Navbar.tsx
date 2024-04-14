@@ -12,6 +12,8 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
+import { usePathname, useRouter, useParams } from 'next/navigation'
+
 import { cn } from '@/lib/utils'
 
 const f = '⇒ Navbar.tsx (Navbar):'
@@ -37,30 +39,42 @@ const links: { title: string; href: string; description: string }[] = [
     href: '/comment',
     description: 'Comment page',
   },
+  {
+    title: 'Subscribe',
+    href: '/subscribe',
+    description: 'Subscribe page',
+  },
 ]
 
 const Navbar: FC = () => {
+  const pathname = usePathname()
+
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {links.map((link) => {
-          const { title, href } = link
-          return (
-            <NavigationMenuItem key={href}>
-              <Link
-                href={href}
-                legacyBehavior
-                passHref
-              >
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {title}
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )
-        })}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className='flex justify-center py-4 border-b'>
+      <NavigationMenu>
+        <NavigationMenuList>
+          {links.map((link) => {
+            const { title, href } = link
+            return (
+              <NavigationMenuItem key={href}>
+                <Link
+                  href={href}
+                  legacyBehavior
+                  passHref
+                >
+                  <NavigationMenuLink
+                    active={pathname === href}
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {title}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )
+          })}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   )
 }
 export default Navbar

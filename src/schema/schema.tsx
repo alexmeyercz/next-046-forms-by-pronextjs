@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { validateZipcode } from './zip'
 
 // registration
 export const registerSchema = z.object({
@@ -37,3 +38,18 @@ export const commentSchema = z.object({
     }),
 })
 export type CommentSchemaType = z.infer<typeof commentSchema>
+
+// subscribe
+export const subscribeSchema = z.object({
+  first: z.string().trim().min(1, { message: 'First name is required' }),
+  last: z.string().trim().min(1, { message: 'Last name is required' }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: 'E-mail is required' })
+    .email({ message: 'Invalid email' }),
+  zip: z.string().trim().refine(validateZipcode, {
+    message: 'Invalid zipcode',
+  }),
+})
+export type SubscribeSchemaType = z.infer<typeof subscribeSchema>
