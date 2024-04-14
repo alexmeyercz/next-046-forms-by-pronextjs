@@ -24,3 +24,16 @@ export const contactSchema = z.object({
     }),
 })
 export type ContactSchemaType = z.infer<typeof contactSchema>
+
+// comment
+export const commentSchema = z.object({
+  name: z.string().trim().min(1, { message: 'Name is required' }),
+  comment: z
+    .string()
+    .trim()
+    .min(10, { message: 'Message must be at least 10 characters.' })
+    .max(160, {
+      message: 'Message must not be longer than 160 characters.',
+    }),
+})
+export type CommentSchemaType = z.infer<typeof commentSchema>

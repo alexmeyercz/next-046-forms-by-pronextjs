@@ -32,6 +32,11 @@ const links: { title: string; href: string; description: string }[] = [
     href: '/contact',
     description: 'Contact page',
   },
+  {
+    title: 'Comment',
+    href: '/comment',
+    description: 'Comment page',
+  },
 ]
 
 const Navbar: FC = () => {

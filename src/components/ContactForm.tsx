@@ -33,26 +33,29 @@ const ContactForm: FC = () => {
       .then((data) => console.log(f, 'data returned from server →', data))
   }
   return (
-    <Form {...form}>
-      <form
-        className='space-y-8'
-        onSubmit={form.handleSubmit(processForm)}
-      >
-        <InputField
-          control={form.control}
-          name='first'
-          label='First Name'
-          description='Your first name'
-        />
-        <TextareaField
-          control={form.control}
-          name='message'
-          label='Message'
-          description='Type your message here'
-        />
-        <Button type='submit'>Submit</Button>
-      </form>
-    </Form>
+    <>
+      <Form {...form}>
+        <form
+          className='space-y-8'
+          onSubmit={form.handleSubmit(processForm)}
+        >
+          <h2>Contact Form</h2>
+          <InputField
+            control={form.control}
+            name='first'
+            label='First Name'
+            description='Your first name'
+          />
+          <TextareaField
+            control={form.control}
+            name='message'
+            label='Message'
+            description='Type your message here'
+          />
+          <Button type='submit'>Submit</Button>
+        </form>
+      </Form>
+    </>
   )
 }
 export default ContactForm
