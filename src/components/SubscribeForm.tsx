@@ -51,9 +51,7 @@ const SubscribeForm: FC<SubscribeFormProps> = ({ onFormAction }) => {
       <form
         className='space-y-8'
         action={formAction}
-        onSubmit={form.handleSubmit(() => {
-          return formRef?.current?.submit()
-        })}
+        onSubmit={form.handleSubmit(() => formRef?.current?.submit())}
         ref={formRef}
       >
         <h2>Subscribe Form</h2>
